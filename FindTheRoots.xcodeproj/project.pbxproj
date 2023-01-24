@@ -12,7 +12,7 @@
 		9796EE2329803D9800814A86 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9796EE2229803D9800814A86 /* Preview Assets.xcassets */; };
 		9796EE2B29803DC000814A86 /* RootsCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796EE2A29803DC000814A86 /* RootsCalculatorView.swift */; };
 		9796EE2E2980489000814A86 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796EE2D2980489000814A86 /* Result.swift */; };
-		9796EE30298049C800814A86 /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796EE2F298049C800814A86 /* resultView.swift */; };
+		9796EE3429804A1300814A86 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796EE3329804A1300814A86 /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +22,7 @@
 		9796EE2229803D9800814A86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9796EE2A29803DC000814A86 /* RootsCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootsCalculatorView.swift; sourceTree = "<group>"; };
 		9796EE2D2980489000814A86 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		9796EE2F298049C800814A86 /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		9796EE3329804A1300814A86 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9796EE2A29803DC000814A86 /* RootsCalculatorView.swift */,
-				9796EE2F298049C800814A86 /* resultView.swift */,
+				9796EE3329804A1300814A86 /* ResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9796EE2E2980489000814A86 /* Result.swift in Sources */,
-				9796EE30298049C800814A86 /* resultView.swift in Sources */,
+				9796EE3429804A1300814A86 /* ResultView.swift in Sources */,
 				9796EE2B29803DC000814A86 /* RootsCalculatorView.swift in Sources */,
 				9796EE1C29803D9600814A86 /* FindTheRootsApp.swift in Sources */,
 			);

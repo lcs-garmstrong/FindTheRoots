@@ -36,7 +36,7 @@ struct RootsCalculatorView: View {
     
     // MARK: User interface
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             
             Image("Quadratic Formula")
                 .resizable()
