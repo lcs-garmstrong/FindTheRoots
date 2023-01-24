@@ -30,13 +30,17 @@ struct RootsCalculatorView: View {
             let x1 = ( b * -1 - discriminant.squareRoot() ) / (2 * a)
             let x2 = ( b * -1 + discriminant.squareRoot() ) / (2 * a)
 
-            return "x ≈ \(x1.formatted(.number.precision(.fractionLength(2)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(2))))"
+            return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
         }
     }
     
     // MARK: User interface
     var body: some View {
         VStack {
+            
+            Image("Quadratic Formula")
+                .resizable()
+                .scaledToFit()
             
             HStack{
                 VStack {
@@ -66,7 +70,10 @@ struct RootsCalculatorView: View {
             
             Text("x-int")
             Text("\(result)")
+            
+            Spacer()
         }
+        .navigationTitle("Quadratic Formula")
         .padding()
         
     }
@@ -74,6 +81,8 @@ struct RootsCalculatorView: View {
 
 struct RootsCalculatorView_Previews: PreviewProvider {
     static var previews: some View {
-        RootsCalculatorView()
+        NavigationView {
+            RootsCalculatorView()
+        }
     }
 }
