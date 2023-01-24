@@ -30,13 +30,14 @@ struct RootsCalculatorView: View {
             let x1 = ( b * -1 - discriminant.squareRoot() ) / (2 * a)
             let x2 = ( b * -1 + discriminant.squareRoot() ) / (2 * a)
 
-            return "x ≈ \(x1) and x ≈ \(x2)"
+            return "x ≈ \(x1.formatted(.number.precision(.fractionLength(2)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(2))))"
         }
     }
     
     // MARK: User interface
     var body: some View {
         VStack {
+            
             HStack{
                 VStack {
                 Text("a: \(a)")
