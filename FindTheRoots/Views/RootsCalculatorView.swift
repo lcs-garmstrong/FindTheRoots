@@ -14,6 +14,9 @@ struct RootsCalculatorView: View {
     @State var b: Double = 1
     @State var c: Double = 1
     
+    // list of prior results
+    @State var priorResults: [Result] = []
+    
     // MARK: Computed properties
     
     var result: String {
@@ -29,7 +32,7 @@ struct RootsCalculatorView: View {
         } else {
             let x1 = ( b * -1 - discriminant.squareRoot() ) / (2 * a)
             let x2 = ( b * -1 + discriminant.squareRoot() ) / (2 * a)
-
+            
             return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
         }
     }
@@ -44,13 +47,13 @@ struct RootsCalculatorView: View {
             
             HStack{
                 VStack {
-                Text("a: \(a)")
-                Slider(value: $a,
-                       in: -50...50,
-                       step: 0.5,
-                       label: {Text("a")})
-            }
-                 
+                    Text("a: \(a)")
+                    Slider(value: $a,
+                           in: -50...50,
+                           step: 0.5,
+                           label: {Text("a")})
+                }
+                
                 VStack{
                     Text("b: \(b)")
                     Slider(value: $b,
@@ -71,7 +74,32 @@ struct RootsCalculatorView: View {
             Text("x-int")
             Text("\(result)")
             
+            // Button
+            
+            Button(action: {
+                let latestResult = Result(a: a,
+                                          b: b,
+                                          c: c,
+                                          roots: result)
+                priorResults.append(latestResult)
+            }, label: {
+                Text("Save Results")
+            })
+            .buttonStyle(.bordered)
+            .padding()
+            
+            // History
+            Text("History:")
+                .font(.largeTitle)
+            
+            
+            List(priorResults.reversed()) { currentResult in HStack {
+                Spacer()
+                ResultView(somePriorResult: currentResult)
+            }
+            }
             Spacer()
+            
         }
         .navigationTitle("Quadratic Formula")
         .padding()
