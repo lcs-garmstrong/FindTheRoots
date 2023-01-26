@@ -47,7 +47,7 @@ struct RootsCalculatorView: View {
             
             HStack{
                 VStack {
-                    Text("a: \(a)")
+                    Text("a: \(a.formatted(.number.precision(.fractionLength(1))))")
                     Slider(value: $a,
                            in: -50...50,
                            step: 0.5,
@@ -55,7 +55,7 @@ struct RootsCalculatorView: View {
                 }
                 
                 VStack{
-                    Text("b: \(b)")
+                    Text("b: \(b.formatted(.number.precision(.fractionLength(1))))")
                     Slider(value: $b,
                            in: -50...50,
                            step: 0.5,
@@ -63,7 +63,7 @@ struct RootsCalculatorView: View {
                 }
                 
                 VStack{
-                    Text("c: \(c)")
+                    Text("c: \(c.formatted(.number.precision(.fractionLength(1))))")
                     Slider(value: $c,
                            in: -50...50,
                            step: 0.5,
@@ -92,11 +92,11 @@ struct RootsCalculatorView: View {
             Text("History:")
                 .font(.largeTitle)
             
-            
-            List(priorResults.reversed()) { currentResult in HStack {
-                Spacer()
-                ResultView(somePriorResult: currentResult)
-            }
+            List(priorResults.reversed()) { currentResult in
+                HStack {
+                    Spacer()
+                    ResultView(somePriorResult: currentResult)
+                }
             }
             Spacer()
             

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ResultView: View {
     
+    // allows "result" data to be shown 
     let somePriorResult: Result
     
     var body: some View {
+        
         VStack (spacing: 10) {
             HStack (spacing: 40){
                 VStack {
@@ -23,7 +25,7 @@ struct ResultView: View {
                 }
                 
                 VStack{
-                    Text("c:\(somePriorResult.c.formatted(.number.precision(.fractionLength(3))))")
+                    Text("c: \(somePriorResult.c.formatted(.number.precision(.fractionLength(3))))")
                 }
             }
             

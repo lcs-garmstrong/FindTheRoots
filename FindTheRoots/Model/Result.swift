@@ -10,6 +10,7 @@ import Foundation
 
 struct Result: Identifiable {
     let id = UUID()
+    
     let a: Double
     let b: Double
     let c: Double
