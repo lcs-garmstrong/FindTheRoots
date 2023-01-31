@@ -17,36 +17,72 @@ struct RootsCalculatorView: View {
     // list of prior results
     @State var priorResults: [Result] = []
     
+
     // MARK: Computed properties
     
-    var result: String? {
+    var discriminant: Double? {
         // is discriminant is < 0 (no answer)
         // if discriminant = 0 (1 answer)
         // if discriminant > 0 (2 answers)
         guard let a = Double(givenA) else {
             return nil
         }
-        
+        guard let b = Double(givenB) else {
+            return nil
+        }
+        guard let c = Double(givenC) else {
+            return nil
+        }
+        return b * b - 4 * a * c
+    }
+    
+    var result1: Double? {
+        guard let a = Double(givenA) else {
+            return nil
+        }
         guard let b = Double(givenB) else {
             return nil
         }
         
-        guard let c = Double(givenC) else {
+        guard let unwrappedDisciminant = discriminant else {
             return nil
         }
         
-        let discriminant = b * b - 4 * a * c
-        
-        if discriminant < 0 {
-            return "No Real Roots"
+        if unwrappedDisciminant < 0 {
+            return nil
         } else {
-            let x1 = ( b * -1 - discriminant.squareRoot() ) / (2 * a)
-            let x2 = ( b * -1 + discriminant.squareRoot() ) / (2 * a)
-            
-            return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
+            return ( b * -1 - unwrappedDisciminant.squareRoot() ) / (2 * a)
         }
     }
     
+    var result2: Double? {
+        guard let a = Double(givenA) else {
+            return nil
+        }
+        guard let b = Double(givenB) else {
+            return nil
+        }
+        
+        guard let unwrappedDisciminant = discriminant else {
+            return nil
+        }
+        
+        if unwrappedDisciminant < 0 {
+            return nil
+        } else {
+            return ( b * -1 + unwrappedDisciminant.squareRoot() ) / (2 * a)
+        }
+    }
+    
+    var finalResult: String {
+        guard let unwrappedResult1 = result1 else {
+            return "No real roots."
+        }
+        
+        
+    }
+//    return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
+
     // MARK: User interface
     var body: some View {
         VStack(spacing: 20) {
@@ -67,43 +103,20 @@ struct RootsCalculatorView: View {
                 Text("C Value")
                 TextField("Enter numericle value for C...", text: $givenC)
             }
-            
-            //            HStack{
-            //                VStack {
-            //                    Text("a: \(a.formatted(.number.precision(.fractionLength(1))))")
-            //                    Slider(value: $a,
-            //                           in: -50...50,
-            //                           step: 0.5,
-            //                           label: {Text("a")})
-            //                }
-            //
-            //                VStack{
-            //                    Text("b: \(b.formatted(.number.precision(.fractionLength(1))))")
-            //                    Slider(value: $b,
-            //                           in: -50...50,
-            //                           step: 0.5,
-            //                           label: {Text("b")})
-            //                }
-            //
-            //                VStack{
-            //                    Text("c: \(c.formatted(.number.precision(.fractionLength(1))))")
-            //                    Slider(value: $c,
-            //                           in: -50...50,
-            //                           step: 0.5,
-            //                           label: {Text("c")})
-            //                }
-            //            }
-            
-            Text("x-int")
-            Text("\(result)")
-            
+
+            Group {
+                Text("x-int")
+                Text("\(result1)")
+                Text("\(result2)")
+            }
             // Button
             
             Button(action: {
-                let latestResult = Result(a: givenA,
-                                          b: givenB,
-                                          c: givenC,
-                                          roots: result)
+                let latestResult = Result(givenA: givenA,
+                                          givenB: givenB,
+                                          givenC: givenC,
+                                          roots1: result1,
+                                          roots2: result2)
                 priorResults.append(latestResult)
             }, label: {
                 Text("Save Results")

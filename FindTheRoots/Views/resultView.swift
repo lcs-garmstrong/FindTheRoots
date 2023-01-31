@@ -29,7 +29,8 @@ struct ResultView: View {
                 }
             }
             
-            Text(somePriorResult.roots)
+            Text("X-Int: \(somePriorResult.roots1.formatted(.number.precision(.fractionLength(3))))")
+            Text("X-Int: \(somePriorResult.roots2.formatted(.number.precision(.fractionLength(3))))")
         }
     }
 }
