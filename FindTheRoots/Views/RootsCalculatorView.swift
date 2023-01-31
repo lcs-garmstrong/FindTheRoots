@@ -10,20 +10,30 @@ import SwiftUI
 struct RootsCalculatorView: View {
     // MARK: Stored properties
     
-    @State var a: Double = 1
-    @State var b: Double = 1
-    @State var c: Double = 1
+    @State var givenA = ""
+    @State var givenB = ""
+    @State var givenC = ""
     
     // list of prior results
     @State var priorResults: [Result] = []
     
     // MARK: Computed properties
     
-    var result: String {
+    var result: String? {
         // is discriminant is < 0 (no answer)
         // if discriminant = 0 (1 answer)
         // if discriminant > 0 (2 answers)
+        guard let a = Double(givenA) else {
+            return nil
+        }
         
+        guard let b = Double(givenB) else {
+            return nil
+        }
+        
+        guard let c = Double(givenC) else {
+            return nil
+        }
         
         let discriminant = b * b - 4 * a * c
         
@@ -44,32 +54,45 @@ struct RootsCalculatorView: View {
             Image("Quadratic Formula")
                 .resizable()
                 .scaledToFit()
-            
-            HStack{
-                VStack {
-                    Text("a: \(a.formatted(.number.precision(.fractionLength(1))))")
-                    Slider(value: $a,
-                           in: -50...50,
-                           step: 0.5,
-                           label: {Text("a")})
-                }
+
+            Group{
+                Text("A Value")
+                TextField("Enter numericle value for A...", text: $givenA)
                 
-                VStack{
-                    Text("b: \(b.formatted(.number.precision(.fractionLength(1))))")
-                    Slider(value: $b,
-                           in: -50...50,
-                           step: 0.5,
-                           label: {Text("b")})
-                }
                 
-                VStack{
-                    Text("c: \(c.formatted(.number.precision(.fractionLength(1))))")
-                    Slider(value: $c,
-                           in: -50...50,
-                           step: 0.5,
-                           label: {Text("c")})
-                }
+                Text("B Value")
+                TextField("Enter numericle value for B...", text: $givenB)
+                
+                
+                Text("C Value")
+                TextField("Enter numericle value for C...", text: $givenC)
             }
+            
+            //            HStack{
+            //                VStack {
+            //                    Text("a: \(a.formatted(.number.precision(.fractionLength(1))))")
+            //                    Slider(value: $a,
+            //                           in: -50...50,
+            //                           step: 0.5,
+            //                           label: {Text("a")})
+            //                }
+            //
+            //                VStack{
+            //                    Text("b: \(b.formatted(.number.precision(.fractionLength(1))))")
+            //                    Slider(value: $b,
+            //                           in: -50...50,
+            //                           step: 0.5,
+            //                           label: {Text("b")})
+            //                }
+            //
+            //                VStack{
+            //                    Text("c: \(c.formatted(.number.precision(.fractionLength(1))))")
+            //                    Slider(value: $c,
+            //                           in: -50...50,
+            //                           step: 0.5,
+            //                           label: {Text("c")})
+            //                }
+            //            }
             
             Text("x-int")
             Text("\(result)")
@@ -77,9 +100,9 @@ struct RootsCalculatorView: View {
             // Button
             
             Button(action: {
-                let latestResult = Result(a: a,
-                                          b: b,
-                                          c: c,
+                let latestResult = Result(a: givenA,
+                                          b: givenB,
+                                          c: givenC,
                                           roots: result)
                 priorResults.append(latestResult)
             }, label: {
