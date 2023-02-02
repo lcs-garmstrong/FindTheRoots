@@ -78,22 +78,30 @@ struct RootsCalculatorView: View {
         guard let unwrappedResult1 = result1 else {
             return "No real roots."
         }
+        return "\(unwrappedResult1)"
     }
     
     var finalResult2: String {
         guard let unwrappedResult2 = result2 else {
             return "No real roots."
         }
+        return "\(unwrappedResult2)"
     }
     
-    var finalResult3: Double {
-        let unwrappedResult3 = result1
-    }
-    
-    var finalResult4: Double {
-        let unwrappedResult4 = result2
-    }
-    //    return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
+        var finalResult3: Double? {
+            guard let unwrappedResult3 = result1 else {
+                return nil
+            }
+            return unwrappedResult3
+        }
+        
+        
+        var finalResult4: Double? {
+            guard let unwrappedResult4 = result2 else {
+                return nil
+            }
+            return unwrappedResult4
+        }
     
     // MARK: User interface
     var body: some View {
@@ -105,30 +113,32 @@ struct RootsCalculatorView: View {
             
             Group{
                 Text("A Value")
-                TextField("Enter numericle value for A...", text: $givenA)
+                TextField("Enter A value...", text: $givenA)
                 
                 
                 Text("B Value")
-                TextField("Enter numericle value for B...", text: $givenB)
+                TextField("Enter B value...", text: $givenB)
                 
                 
                 Text("C Value")
-                TextField("Enter numericle value for C...", text: $givenC)
+                TextField("Enter C value...", text: $givenC)
             }
+            
             
             Group {
-                Text("x-int")
-                Text("\(finalResult1)")
-                Text("\(finalResult2)")
+                Text("x-ints:")
+                Text(finalResult1)
+                Text(finalResult2)
             }
-            // Button
             
+            
+            // Button
             Button(action: {
                 let latestResult = Result(givenA: givenA,
                                           givenB: givenB,
                                           givenC: givenC,
-                                          roots1: finalResult3,
-                                          roots2: finalResult4)
+                                          roots1: finalResult3!,
+                                          roots2: finalResult4!)
                 priorResults.append(latestResult)
             }, label: {
                 Text("Save Results")
