@@ -17,15 +17,15 @@ struct ResultView: View {
         VStack (spacing: 10) {
             HStack (spacing: 40){
                 VStack {
-                    Text("b: \(somePriorResult.a.formatted(.number.precision(.fractionLength(3))))")
+                    Text(somePriorResult.givenA)
             }
                  
                 VStack{
-                    Text("a: \(somePriorResult.b.formatted(.number.precision(.fractionLength(3))))")
+                    Text(somePriorResult.givenB)
                 }
                 
                 VStack{
-                    Text("c: \(somePriorResult.c.formatted(.number.precision(.fractionLength(3))))")
+                    Text(somePriorResult.givenC)
                 }
             }
             

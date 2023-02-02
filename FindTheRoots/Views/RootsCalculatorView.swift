@@ -17,7 +17,7 @@ struct RootsCalculatorView: View {
     // list of prior results
     @State var priorResults: [Result] = []
     
-
+    
     // MARK: Computed properties
     
     var discriminant: Double? {
@@ -74,15 +74,27 @@ struct RootsCalculatorView: View {
         }
     }
     
-    var finalResult: String {
+    var finalResult1: String {
         guard let unwrappedResult1 = result1 else {
             return "No real roots."
         }
-        
-        
     }
-//    return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
-
+    
+    var finalResult2: String {
+        guard let unwrappedResult2 = result2 else {
+            return "No real roots."
+        }
+    }
+    
+    var finalResult3: Double {
+        let unwrappedResult3 = result1
+    }
+    
+    var finalResult4: Double {
+        let unwrappedResult4 = result2
+    }
+    //    return "x ≈ \(x1.formatted(.number.precision(.fractionLength(3)))) and x ≈ \(x2.formatted(.number.precision(.fractionLength(3))))"
+    
     // MARK: User interface
     var body: some View {
         VStack(spacing: 20) {
@@ -90,7 +102,7 @@ struct RootsCalculatorView: View {
             Image("Quadratic Formula")
                 .resizable()
                 .scaledToFit()
-
+            
             Group{
                 Text("A Value")
                 TextField("Enter numericle value for A...", text: $givenA)
@@ -103,11 +115,11 @@ struct RootsCalculatorView: View {
                 Text("C Value")
                 TextField("Enter numericle value for C...", text: $givenC)
             }
-
+            
             Group {
                 Text("x-int")
-                Text("\(result1)")
-                Text("\(result2)")
+                Text("\(finalResult1)")
+                Text("\(finalResult2)")
             }
             // Button
             
@@ -115,8 +127,8 @@ struct RootsCalculatorView: View {
                 let latestResult = Result(givenA: givenA,
                                           givenB: givenB,
                                           givenC: givenC,
-                                          roots1: result1,
-                                          roots2: result2)
+                                          roots1: finalResult3,
+                                          roots2: finalResult4)
                 priorResults.append(latestResult)
             }, label: {
                 Text("Save Results")
