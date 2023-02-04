@@ -88,20 +88,20 @@ struct RootsCalculatorView: View {
         return "\(unwrappedResult2)"
     }
     
-        var finalResult3: Double? {
-            guard let unwrappedResult3 = result1 else {
-                return nil
-            }
-            return unwrappedResult3
+    var finalResult3: Double? {
+        guard let unwrappedResult3 = result1 else {
+            return nil
         }
-        
-        
-        var finalResult4: Double? {
-            guard let unwrappedResult4 = result2 else {
-                return nil
-            }
-            return unwrappedResult4
+        return unwrappedResult3
+    }
+    
+    
+    var finalResult4: Double? {
+        guard let unwrappedResult4 = result2 else {
+            return nil
         }
+        return unwrappedResult4
+    }
     
     // MARK: User interface
     var body: some View {
@@ -112,21 +112,25 @@ struct RootsCalculatorView: View {
                 .scaledToFit()
             
             Group{
-                Text("A Value")
-                TextField("Enter A value...", text: $givenA)
+                HStack(spacing: 100) {
+                    Text("A Value")
+                    TextField("Enter A value...", text: $givenA)
+                }
                 
+                HStack(spacing: 100) {
+                    Text("B Value")
+                    TextField("Enter B value...", text: $givenB)
+                }
                 
-                Text("B Value")
-                TextField("Enter B value...", text: $givenB)
-                
-                
-                Text("C Value")
-                TextField("Enter C value...", text: $givenC)
+                HStack(spacing: 100) {
+                    Text("C Value")
+                    TextField("Enter C value...", text: $givenC)
+                }
             }
             
             
             Group {
-                Text("x-ints:")
+                Text("X-Ints:")
                 Text(finalResult1)
                 Text(finalResult2)
             }
@@ -172,4 +176,3 @@ struct RootsCalculatorView_Previews: PreviewProvider {
         }
     }
 }
-
