@@ -114,23 +114,28 @@ struct RootsCalculatorView: View {
             Group{
                 HStack(spacing: 100) {
                     Text("A Value")
+                        .bold()
                     TextField("Enter A value...", text: $givenA)
                 }
                 
                 HStack(spacing: 100) {
                     Text("B Value")
+                        .bold()
                     TextField("Enter B value...", text: $givenB)
                 }
                 
                 HStack(spacing: 100) {
                     Text("C Value")
+                        .bold()
                     TextField("Enter C value...", text: $givenC)
                 }
             }
             
+            Spacer()
             
             Group {
                 Text("X-Ints:")
+                    .bold()
                 Text(finalResult1)
                 Text(finalResult2)
             }
@@ -152,7 +157,7 @@ struct RootsCalculatorView: View {
             
             // History
             Text("History:")
-                .font(.largeTitle)
+                .font(.title2)
             
             List(priorResults.reversed()) { currentResult in
                 HStack {

@@ -18,4 +18,4 @@ struct Result: Identifiable {
     let roots2: Double
 }
 
-let resultForPreview = Result(givenA: "1", givenB: "-6", givenC: "8", roots1: 3, roots2: 4)
+let resultForPreview = Result(givenA: "1", givenB: "-6", givenC: "8", roots1: 2, roots2: 4)
