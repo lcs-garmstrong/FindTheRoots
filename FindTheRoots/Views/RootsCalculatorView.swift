@@ -88,7 +88,7 @@ struct RootsCalculatorView: View {
         return "\(unwrappedResult2)"
     }
     
-    var finalResult3: Double? {
+    var historyResult1: Double? {
         guard let unwrappedResult3 = result1 else {
             return nil
         }
@@ -96,7 +96,7 @@ struct RootsCalculatorView: View {
     }
     
     
-    var finalResult4: Double? {
+    var historyResult2: Double? {
         guard let unwrappedResult4 = result2 else {
             return nil
         }
@@ -146,8 +146,8 @@ struct RootsCalculatorView: View {
                 let latestResult = Result(givenA: givenA,
                                           givenB: givenB,
                                           givenC: givenC,
-                                          roots1: finalResult3!,
-                                          roots2: finalResult4!)
+                                          roots1: historyResult1!,
+                                          roots2: historyResult2!)
                 priorResults.append(latestResult)
             }, label: {
                 Text("Save Results")
