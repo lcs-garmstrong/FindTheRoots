@@ -17,15 +17,24 @@ struct ResultView: View {
         VStack (spacing: 10) {
             HStack (spacing: 40){
                 VStack {
-                    Text(somePriorResult.givenA)
+                    HStack {
+                        Text("A:")
+                        Text(somePriorResult.givenA)
+                    }
             }
                  
                 VStack{
-                    Text(somePriorResult.givenB)
+                    HStack {
+                        Text("B:")
+                        Text(somePriorResult.givenB)
+                    }
                 }
                 
                 VStack{
-                    Text(somePriorResult.givenC)
+                    HStack {
+                        Text("C:")
+                        Text(somePriorResult.givenC)
+                    }
                 }
             }
             
