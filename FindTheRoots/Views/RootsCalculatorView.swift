@@ -102,7 +102,20 @@ struct RootsCalculatorView: View {
         }
         return unwrappedResult4
     }
+    // history results as double not optional
+    var unwrappedHistoryResult1: Double {
+        guard let unwrappedResult4 = result2 else {
+            return 0
+        }
+        return unwrappedResult4
+    }
     
+    var unwrappedHistoryResult2: Double {
+        guard let unwrappedResult4 = result2 else {
+            return 0
+        }
+        return unwrappedResult4
+    }
     // MARK: User interface
     var body: some View {
         VStack(spacing: 20) {
@@ -113,19 +126,19 @@ struct RootsCalculatorView: View {
             
             Group{
                 HStack(spacing: 100) {
-                    Text("A Value")
+                    Text("A Value:")
                         .bold()
                     TextField("Enter A value...", text: $givenA)
                 }
                 
                 HStack(spacing: 100) {
-                    Text("B Value")
+                    Text("B Value:")
                         .bold()
                     TextField("Enter B value...", text: $givenB)
                 }
                 
                 HStack(spacing: 100) {
-                    Text("C Value")
+                    Text("C Value:")
                         .bold()
                     TextField("Enter C value...", text: $givenC)
                 }
@@ -146,8 +159,8 @@ struct RootsCalculatorView: View {
                 let latestResult = Result(givenA: givenA,
                                           givenB: givenB,
                                           givenC: givenC,
-                                          roots1: historyResult1!,
-                                          roots2: historyResult2!)
+                                          roots1: unwrappedHistoryResult1,
+                                          roots2: unwrappedHistoryResult2)
                 priorResults.append(latestResult)
             }, label: {
                 Text("Save Results")
