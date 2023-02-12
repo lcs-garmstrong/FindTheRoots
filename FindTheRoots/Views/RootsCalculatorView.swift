@@ -104,17 +104,17 @@ struct RootsCalculatorView: View {
     }
     // history results as double not optional
     var unwrappedHistoryResult1: Double {
-        guard let unwrappedResult4 = result2 else {
+        guard let unwrappedHistoryt1 = result1 else {
             return 0
         }
-        return unwrappedResult4
+        return unwrappedHistoryt1
     }
     
     var unwrappedHistoryResult2: Double {
-        guard let unwrappedResult4 = result2 else {
+        guard let unwrappedHistoryt2 = result2 else {
             return 0
         }
-        return unwrappedResult4
+        return unwrappedHistoryt2
     }
     // MARK: User interface
     var body: some View {
