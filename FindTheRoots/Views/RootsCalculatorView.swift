@@ -17,7 +17,6 @@ struct RootsCalculatorView: View {
     // list of prior results
     @State var priorResults: [Result] = []
     
-    
     // MARK: Computed properties
     
     var discriminant: Double? {
@@ -95,13 +94,13 @@ struct RootsCalculatorView: View {
         return unwrappedResult3
     }
     
-    
     var historyResult2: Double? {
         guard let unwrappedResult4 = result2 else {
             return nil
         }
         return unwrappedResult4
     }
+    
     // history results as double not optional
     var unwrappedHistoryResult1: Double {
         guard let unwrappedHistoryt1 = result1 else {
@@ -116,6 +115,7 @@ struct RootsCalculatorView: View {
         }
         return unwrappedHistoryt2
     }
+    
     // MARK: User interface
     var body: some View {
         VStack(spacing: 20) {
