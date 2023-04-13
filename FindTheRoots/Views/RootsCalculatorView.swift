@@ -5,17 +5,24 @@
 //  Created by Graeme Armstrong on 2023-01-24.
 //
 
+import Blackbird
 import SwiftUI
 
 struct RootsCalculatorView: View {
     // MARK: Stored properties
+    
+    // allow writing to the database.
+    @Environment(\.blackbirdDatabase) var db:
+    Blackbird.Database?
     
     @State var givenA = ""
     @State var givenB = ""
     @State var givenC = ""
     
     // list of prior results
-    @State var priorResults: [Result] = []
+    @BlackbirdLiveModels({ db in
+        try await Result.read(from: db)
+    }) var priorResults
     
     // MARK: Computed properties
     
@@ -172,7 +179,7 @@ struct RootsCalculatorView: View {
             Text("History:")
                 .font(.title2)
             
-            List(priorResults.reversed()) { currentResult in
+            List(priorResults.results.reversed()) { currentResult in
                 HStack {
                     Spacer()
                     ResultView(somePriorResult: currentResult)
