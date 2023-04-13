@@ -163,17 +163,10 @@ struct RootsCalculatorView: View {
             
             // Button
             Button(action: {
-//                let latestResult = Result(givenA: givenA,
-//                                          givenB: givenB,
-//                                          givenC: givenC,
-//                                          roots1: unwrappedHistoryResult1,
-//                                          roots2: unwrappedHistoryResult2)
-//                priorResults.append(latestResult)
-//
                 Task {
                     // write to database
                     try await db!.transaction { core in
-                        try core.query("INSERT INTO QuadraticFormulaHistory (givenA, givenB, givenC, roots1, roots2) VALUES (?,?,?,?,?)", givenA, givenB, givenC, unwrappedHistoryResult1, unwrappedHistoryResult2)
+                        try core.query("INSERT INTO Result (givenA, givenB, givenC, roots1, roots2) VALUES (?,?,?,?,?)", givenA, givenB, givenC, unwrappedHistoryResult1, unwrappedHistoryResult2)
                     }
                     // clear the input field.
                     givenA = ""

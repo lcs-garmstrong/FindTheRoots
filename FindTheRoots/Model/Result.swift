@@ -10,6 +10,7 @@ import Foundation
 
 
 struct Result: BlackbirdModel {
+    @BlackbirdColumn var id: Int
     @BlackbirdColumn var givenA: String
     @BlackbirdColumn var givenB: String
     @BlackbirdColumn var givenC: String
@@ -17,4 +18,4 @@ struct Result: BlackbirdModel {
     @BlackbirdColumn var roots2: Double
 }
 
-let resultForPreview = Result(givenA: "1", givenB: "-6", givenC: "8", roots1: 2, roots2: 4)
+let resultForPreview = Result(id: 1, givenA: "1", givenB: "-6", givenC: "8", roots1: 2, roots2: 4)
