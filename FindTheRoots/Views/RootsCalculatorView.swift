@@ -163,12 +163,23 @@ struct RootsCalculatorView: View {
             
             // Button
             Button(action: {
-                let latestResult = Result(givenA: givenA,
-                                          givenB: givenB,
-                                          givenC: givenC,
-                                          roots1: unwrappedHistoryResult1,
-                                          roots2: unwrappedHistoryResult2)
-                priorResults.append(latestResult)
+//                let latestResult = Result(givenA: givenA,
+//                                          givenB: givenB,
+//                                          givenC: givenC,
+//                                          roots1: unwrappedHistoryResult1,
+//                                          roots2: unwrappedHistoryResult2)
+//                priorResults.append(latestResult)
+//
+                Task {
+                    // write to database
+                    try await db!.transaction { core in
+                        try core.query("INSERT INTO QuadraticFormulaHistory (givenA, givenB, givenC, roots1, roots2) VALUES (?,?,?,?,?)", givenA, givenB, givenC, unwrappedHistoryResult1, unwrappedHistoryResult2)
+                    }
+                    // clear the input field.
+                    givenA = ""
+                    givenB = ""
+                    givenC = ""                    
+                }
             }, label: {
                 Text("Save Results")
             })
@@ -198,6 +209,7 @@ struct RootsCalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             RootsCalculatorView()
+                .environment(\.blackbirdDatabase, AppDatabase.instance)
         }
     }
 }
